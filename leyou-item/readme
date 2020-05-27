@@ -1,0 +1,3 @@
+商品的聚合模块
+leyou-item-interface ：pojo 自定义异常等通用的应用程序接口
+leyou-item-servce: 商品的微服务，用于对商品的业务操作，包括但不限于对商品的CRUD,通过网关组件leyou-gateway的/item/**可以路由到该微服务
