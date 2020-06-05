@@ -4,8 +4,8 @@ spring:
   application:
     name: item-service
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql:///ssm
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///yun6?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
     username: root
     password: root
 eureka:
@@ -17,3 +17,5 @@ eureka:
     lease-expiration-duration-in-seconds: 15  #服务失效时间
 mybatis:
   type-aliases-package:  com.item.leyou.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

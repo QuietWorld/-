@@ -80,6 +80,16 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <!-- 引入Lombok依赖供整个应用使用 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
