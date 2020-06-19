@@ -1,0 +1,32 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: upload-service
+  servlet:
+    multipart:
+      max-file-size: 10MB
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 #服务续约间隔时间
+    lease-expiration-duration-in-seconds: 15 #服务失效时间
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image: # 缩略图，宽高自定义，随意就行。
+    width: 60
+    height: 60
+  tracker-list: # tracker地址(跟踪服务器地址，在虚拟机上面安装FastDFS时进行过配置)
+    - 192.168.126.129:22122
+leyou:
+  upload:
+    allowedType:
+      - image/jpeg
+      - image/png
+    base-url:
+      - http://image.leyou.com/

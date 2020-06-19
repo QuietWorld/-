@@ -15,4 +15,19 @@ zuul:
   prefix: /api     #网关前缀
   routes:
     item-service: /item/**  # 路由到商品的微服务
-
+    upload-service:
+      path: /upload/**
+      serviceId: upload-service
+      strip-prefix: false
+leyou:
+  cors:
+    allowed-origin:
+      - Http://manage.leyou.com
+    allowed-method:
+      - OPTIONS
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - PATCH
+      - HEAD
