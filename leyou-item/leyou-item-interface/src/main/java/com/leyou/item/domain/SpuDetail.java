@@ -2,6 +2,7 @@ package com.leyou.item.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -25,9 +26,9 @@ public class SpuDetail {
     /** 商品描述 */
     private String description;
     /** 商品特殊规格的名称及可选值模板 */
-    private String specTemplate;
+    private String specialSpec;
     /** 商品的全局规格属性 */
-    private String specifications;
+    private String genericSpec;
     /** 包装清单 */
     private String packingList;
     /** 售后服务 */

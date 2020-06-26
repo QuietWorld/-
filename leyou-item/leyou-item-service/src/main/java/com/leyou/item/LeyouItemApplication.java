@@ -10,8 +10,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(value = {"com.leyou.item.category.dao","com.leyou.item.brand.dao","com.leyou.item.specification.dao",
-                    "com.leyou.item.spu.dao"  })
+@MapperScan(value = "com.leyou.item.dao")
 public class LeyouItemApplication {
 
     public static void main(String[] args) {

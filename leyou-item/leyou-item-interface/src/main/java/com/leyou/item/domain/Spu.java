@@ -2,12 +2,15 @@ package com.leyou.item.domain;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
+
+/**
+ * Spu是Sku的集合，表示了具有相同特征的一组Sku集合，是抽象的概念。
+ * @author zc
+ */
 @Table(name = "tb_spu")
 @Data
 public class Spu {
@@ -36,5 +39,15 @@ public class Spu {
     /** 最后修改时间*/
     private Date lastUpdateTime;
 
-
+    /**
+     * Sku集合，使用@Transient声明该属性不属于tb_spu表字段
+     */
+    @Transient
+    private List<Sku> skus;
+    /**
+     * 将spu表进行垂直拆分，将可能会保存文本的字段单独拆分出来作为tb_spuDetail表，提高spu表的查询效率，使用@Transient
+     * 声明该属性属于spu表字段。
+     */
+    @Transient
+    private SpuDetail spuDetail;
 }

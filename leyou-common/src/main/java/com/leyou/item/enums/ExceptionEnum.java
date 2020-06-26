@@ -28,6 +28,10 @@ public enum ExceptionEnum {
     SPEC_PARAM_UPDATE_ERROR(500,"规格组内参数更新失败"),
     SPEC_PARAM_DELETE_ERROR(500,"规格组内参数删除失败"),
     GOODS_NOT_FOUND(404,"商品查询失败"),
+    GOODS_SAVE_ERROR(500,"商品保存失败"),
+    SPUDETAIL_NOT_FOUND(404,"商品详细找不到"),
+    SKU_NOT_FOUND(404,"SKU找不到"),
+    GOODS_UPDATE_ERROR(500,"商品更新失败"),
     ;
 
 

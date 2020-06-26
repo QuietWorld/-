@@ -19,6 +19,7 @@ zuul:
       path: /upload/**
       serviceId: upload-service
       strip-prefix: false
+    search-service: /search/** # es的索引库路由
 leyou:
   cors:
     allowed-origin:
