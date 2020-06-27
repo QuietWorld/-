@@ -1,6 +1,6 @@
 package com.leyou.search.client;
 
-import com.leyou.item.domain.SpecGroup;
+import com.leyou.item.interf.domain.SpecGroup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
