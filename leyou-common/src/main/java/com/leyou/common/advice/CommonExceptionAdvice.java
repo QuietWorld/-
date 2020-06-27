@@ -1,10 +1,11 @@
 package com.leyou.common.advice;
 
+
 import com.leyou.common.exception.LeyouException;
 import com.leyou.common.vo.ExceptionResult;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
 /**
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * 当前类是controller配置的通知类，它就会去监控所有controller中的所有方法的执行。
  * @author zc
  */
-@ControllerAdvice
+
+@RestControllerAdvice
 public class CommonExceptionAdvice {
 
     /**

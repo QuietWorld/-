@@ -1,4 +1,4 @@
-package com.leyou.item.service;
+package com.leyou;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +10,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(value = "com.leyou.item.dao")
+@MapperScan(value = "com.leyou.item.service.dao")
 public class LeyouItemApplication {
 
     public static void main(String[] args) {

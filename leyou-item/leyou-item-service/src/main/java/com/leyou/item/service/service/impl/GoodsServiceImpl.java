@@ -3,8 +3,10 @@ package com.leyou.item.service.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.leyou.item.enums.ExceptionEnum;
-import com.leyou.item.exception.LeyouException;
+import com.leyou.common.enums.ExceptionEnum;
+import com.leyou.common.exception.LeyouException;
+import com.leyou.common.vo.PageResult;
+import com.leyou.item.interf.domain.*;
 import com.leyou.item.service.dao.SkuDao;
 import com.leyou.item.service.dao.SpuDao;
 import com.leyou.item.service.dao.SpuDetailDao;
@@ -14,7 +16,6 @@ import com.leyou.item.service.service.BrandService;
 import com.leyou.item.service.service.CategoryService;
 import com.leyou.item.service.service.GoodsService;
 import com.leyou.item.interf.vo.SpuVo;
-import com.leyou.item.vo.PageResult;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -159,10 +159,6 @@ public class GoodsServiceImpl implements GoodsService {
             throw new LeyouException(ExceptionEnum.SKU_NOT_FOUND);
         }
         // 查询库存
-       /* for (Sku sku : skuList){
-            Stock stock = stockDao.selectByPrimaryKey(sku.getId());
-            sku.setStock(stock.getStock());
-        }*/
         skuList.forEach(sku -> {
             Stock stock = stockDao.selectByPrimaryKey(sku.getId());
             sku.setStock(stock.getStock());
@@ -354,7 +350,7 @@ public class GoodsServiceImpl implements GoodsService {
         for (Sku sku : spu.getSkus()) {
             sku.setSpuId(spu.getId());
             sku.setCreateTime(new Date());
-            sku.setLastUpdateTime(sku.getLastUpdateTime());
+            sku.setLastUpdateTime(sku.getCreateTime());
             int insertRowCount = skuDao.insert(sku);
             if (insertRowCount != 1) {
                 log.error("sku保存失败,失败的sku：{}", sku.toString());

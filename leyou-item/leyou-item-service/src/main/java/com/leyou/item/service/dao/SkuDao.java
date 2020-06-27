@@ -1,7 +1,8 @@
 package com.leyou.item.service.dao;
 
+import com.leyou.common.mapper.BaseMapper;
 import com.leyou.item.interf.domain.Sku;
-import com.leyou.item.mapper.BaseMapper;
+
 
 /**
  * tb_sku表持久层接口

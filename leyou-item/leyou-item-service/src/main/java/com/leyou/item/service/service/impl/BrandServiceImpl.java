@@ -2,12 +2,12 @@ package com.leyou.item.service.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.leyou.common.enums.ExceptionEnum;
+import com.leyou.common.exception.LeyouException;
+import com.leyou.common.vo.PageResult;
 import com.leyou.item.interf.domain.Brand;
-import com.leyou.item.enums.ExceptionEnum;
-import com.leyou.item.exception.LeyouException;
 import com.leyou.item.service.dao.BrandDao;
 import com.leyou.item.interf.rpo.BrandPageRpo;
-import com.leyou.item.vo.PageResult;
 import com.leyou.item.service.service.BrandService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

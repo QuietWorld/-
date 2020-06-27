@@ -1,17 +1,17 @@
 package com.leyou.item.service.web;
 
+
+import com.leyou.common.vo.PageResult;
 import com.leyou.item.interf.domain.Sku;
 import com.leyou.item.interf.domain.Spu;
 import com.leyou.item.interf.domain.SpuDetail;
 import com.leyou.item.interf.rpo.GoodsPageRpo;
-import com.leyou.item.service.service.GoodsService;
-import com.leyou.item.vo.PageResult;
 import com.leyou.item.interf.vo.SpuVo;
+import com.leyou.item.service.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -30,7 +30,7 @@ import java.util.List;
  * @author zc
  */
 @RestController
-@RequestMapping("/goods")
+@RequestMapping
 public class GoodsController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class GoodsController {
      * @param spu
      * @return
      */
-    @PostMapping
+    @PostMapping("/goods")
     public ResponseEntity<Void> saveGoods(@RequestBody Spu spu){
         goodsService.saveGoods(spu);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -54,7 +54,7 @@ public class GoodsController {
      * @param spu
      * @return
      */
-    @PutMapping
+    @PutMapping("/goods")
     public ResponseEntity<Void> updateGoods(@RequestBody Spu spu){
         goodsService.updateGoods(spu);
         // 更新和删除成功响应204,也就是HttpStatus.NO_CONTENT

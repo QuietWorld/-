@@ -1,10 +1,10 @@
 package com.leyou.item.service.service;
 
+import com.leyou.common.vo.PageResult;
 import com.leyou.item.interf.domain.Sku;
 import com.leyou.item.interf.domain.Spu;
 import com.leyou.item.interf.domain.SpuDetail;
 import com.leyou.item.interf.rpo.GoodsPageRpo;
-import com.leyou.item.vo.PageResult;
 import com.leyou.item.interf.vo.SpuVo;
 
 import java.util.List;

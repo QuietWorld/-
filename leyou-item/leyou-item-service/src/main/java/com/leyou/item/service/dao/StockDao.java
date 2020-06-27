@@ -1,7 +1,8 @@
 package com.leyou.item.service.dao;
 
+import com.leyou.common.mapper.BaseMapper;
 import com.leyou.item.interf.domain.Stock;
-import com.leyou.item.mapper.BaseMapper;
+
 
 
 /**

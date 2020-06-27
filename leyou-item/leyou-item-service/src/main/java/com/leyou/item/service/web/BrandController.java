@@ -1,8 +1,8 @@
 package com.leyou.item.service.web;
 
 
+import com.leyou.common.vo.PageResult;
 import com.leyou.item.interf.domain.Brand;
-import com.leyou.item.vo.PageResult;
 import com.leyou.item.interf.rpo.BrandPageRpo;
 import com.leyou.item.service.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
  * @author zc
  */
-
 @RestController
 @RequestMapping("/brand")
 public class BrandController {
