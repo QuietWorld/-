@@ -1,0 +1,17 @@
+server:
+  port:
+spring:
+  application:
+    name: order-service
+  redis:
+    host: 192.168.126.129
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 15 # 如果该服务的业务不需要进行远程调用则可以不用配置。
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+    ip-address: 127.0.0.1
+    prefer-ip-address: true

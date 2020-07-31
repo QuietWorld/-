@@ -74,4 +74,18 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return categories;
     }
+
+    /**
+     * 根据分类id查询分类
+     * @param id 分类id
+     * @return
+     */
+    @Override
+    public Category getCategoryById(Long id) {
+        Category category = categoryDao.selectByPrimaryKey(id);
+        if (category == null){
+            throw new LeyouException(ExceptionEnum.CATEGORY_NOT_FOUND);
+        }
+        return category;
+    }
 }

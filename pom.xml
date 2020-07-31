@@ -15,6 +15,12 @@
         <module>leyou-common</module>
         <module>leyou-upload</module>
         <module>leyou-search</module>
+        <module>leyou-page</module>
+        <module>leyou-sms</module>
+        <module>leyou-user</module>
+        <module>leyou-auth</module>
+        <module>leyou-cart</module>
+        <module>leyou-order</module>
     </modules>
 
     <!-- leyou子模块继承该依赖 -->
@@ -39,6 +45,7 @@
         <fastDFS.client.version>1.26.1-RELEASE</fastDFS.client.version>
     </properties>
 
+    <!-- 在父子模块中，如果子模块没有显示的声明<version>将继承父模块声明的<version> -->
     <dependencyManagement>
         <dependencies>
             <!-- springCloud -->
@@ -92,12 +99,4 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

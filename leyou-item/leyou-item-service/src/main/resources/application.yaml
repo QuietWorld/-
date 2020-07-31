@@ -8,6 +8,20 @@ spring:
     url: jdbc:mysql:///yun6?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
     username: root
     password: root
+  rabbitmq:
+    host: 192.168.126.129
+    username: root
+    password: root
+    virtual-host: /leyou
+    template:
+      exchange: leyou.item.exchange
+      retry:
+        enabled: true
+        initial-interval: 5000ms
+        max-attempts: 3
+        max-interval: 30000ms
+        multiplier: 2
+    publisher-confirms: true  # 生产者确认机制，确保消息会正确发送，如果发送失败会有错误回执，从而触发重试
 eureka:
   client:
     service-url:

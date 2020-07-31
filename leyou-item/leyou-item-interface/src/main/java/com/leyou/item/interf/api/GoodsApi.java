@@ -1,7 +1,14 @@
 package com.leyou.item.interf.api;
 
+import com.leyou.common.vo.PageResult;
 import com.leyou.item.interf.domain.Sku;
+import com.leyou.item.interf.domain.Spu;
+import com.leyou.item.interf.domain.SpuDetail;
+import com.leyou.item.interf.rpo.GoodsPageRpo;
+import com.leyou.item.interf.vo.SpuVo;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -23,6 +30,29 @@ public interface GoodsApi {
      * @param spuId
      * @return
      */
-    @GetMapping("/goods/sku/list")
+    @GetMapping("/sku/list")
     List<Sku> listSkusBySpuId(@RequestParam("id") Long spuId);
+
+    /**
+     * 查询所有Spu
+     * @return
+     */
+    @GetMapping("/spu/all")
+    List<Spu> listAllSpus();
+
+    /**
+     * 根据SpuId查询SpuDetail
+     * @param spuId
+     * @return
+     */
+    @GetMapping("/spu/detail/{spuId}")
+    SpuDetail getSpuDetailBySpuId(@PathVariable("spuId")Long spuId);
+
+    /**
+     * 根据id查询Spu
+     * @param id Spu的主键id
+     * @return
+     */
+    @GetMapping("/spu/{id}")
+    Spu getSpuById(@PathVariable("id") Long id);
 }

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -35,7 +36,7 @@ public class SpecificationServiceImpl implements SpecificationService {
 
 
     /**
-     * 根据商品id查询该商品所有的规格组信息
+     * 根据商品分类id查询该商品所有的规格组信息
      * @param cid 商品分类id
      * @return
      */

@@ -47,4 +47,24 @@ public interface GoodsService {
      * @param spu
      */
     void updateGoods(Spu spu);
+
+    /**
+     * 查询所有Spu
+     * @return
+     */
+    List<Spu> listAllSpus();
+
+    /**
+     * 根据spuId查询Spu
+     * @param spuId
+     * @return
+     */
+    Spu getSpuById(Long spuId);
+
+    /**
+     * 根据多个sku的id查询sku集合
+     * @param ids
+     * @return
+     */
+    List<Sku> listSkusByIds(List<Long> ids);
 }

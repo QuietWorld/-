@@ -11,7 +11,7 @@
 
     <groupId>com.leyou.item</groupId>
     <artifactId>leyou-item</artifactId>
-    <packaging>pom</packaging>
+    <packaging>pom</packaging><!-- 父模块使用pom打包方式 -->
     <modules>
         <module>leyou-item-interface</module>
         <module>leyou-item-service</module>

@@ -19,6 +19,7 @@ import com.leyou.item.interf.vo.SpuVo;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +52,8 @@ public class GoodsServiceImpl implements GoodsService {
     private SkuDao skuDao;
     @Autowired
     private StockDao stockDao;
+    @Autowired
+    private AmqpTemplate template;
     private static final Logger log = LoggerFactory.getLogger(GoodsServiceImpl.class);
 
     /**
@@ -121,6 +124,8 @@ public class GoodsServiceImpl implements GoodsService {
         // 3.保存商品sku和stock信息
         this.saveSkuAndStock(spu);
 
+        // 4.发送消息
+        this.sendMessage(spu.getId(),"item.insert");
     }
 
     /**
@@ -229,7 +234,73 @@ public class GoodsServiceImpl implements GoodsService {
             log.error("商品详情更新失败:{}", spuDetail.toString());
             throw new LeyouException(ExceptionEnum.GOODS_UPDATE_ERROR);
         }
+
+        // 5.发送消息
+        this.sendMessage(spu.getId(),"item.update");
     }
+
+    /**
+     * 查询所有Spu
+     * @return
+     */
+    @Override
+    public List<Spu> listAllSpus() {
+        // 查询所有Spu
+        List<Spu> spus = spuDao.selectAll();
+        if (CollectionUtils.isEmpty(spus)){
+            throw new LeyouException(ExceptionEnum.GOODS_NOT_FOUND);
+        }
+        for (Spu spu : spus){
+            // 根据SpuId查询SpuDetail
+            try{
+                SpuDetail spuDetail = this.getSpuDetailBySpuId(spu.getId());
+                spu.setSpuDetail(spuDetail);
+            }catch (LeyouException e){
+                log.info(e.getMessage());
+            }
+            // 根据SpuId查询该Spu的所有Sku
+            List<Sku> skus = this.listSkusBySpuId(spu.getId());
+            spu.setSkus(skus);
+        }
+        System.out.println(spus.size());
+        return spus;
+    }
+
+    /**
+     * 根据SpuId查询Spu
+     * @param spuId
+     * @return
+     */
+    @Override
+    public Spu getSpuById(Long spuId) {
+        // 查询Spu
+        Spu spu = spuDao.selectByPrimaryKey(spuId);
+        if (spu == null){
+            throw new LeyouException(ExceptionEnum.SPU_NOT_FOUND);
+        }
+        // 查询Spu下所有Sku
+        spu.setSkus(this.listSkusBySpuId(spuId));
+        // 查询SpuDetail
+        spu.setSpuDetail(this.getSpuDetailBySpuId(spuId));
+        return spu;
+    }
+
+    /**
+     * 根据多个sku的id查询sku集合
+     * @param ids
+     * @return
+     */
+    @Override
+    public List<Sku> listSkusByIds(List<Long> ids) {
+        List<Sku> skus = skuDao.selectByIdList(ids);
+        if(CollectionUtils.isEmpty(skus)){
+            throw new LeyouException(ExceptionEnum.SKU_NOT_FOUND);
+        }
+        return skus;
+    }
+
+
+
 
     /**
      * 我写的商品更新，很麻烦！
@@ -343,6 +414,21 @@ public class GoodsServiceImpl implements GoodsService {
         }
         return spuvos;
     }
+
+
+    /**
+     * 发送消息
+     * @param spuId
+     */
+    private void sendMessage(Long spuId,String routingKey){
+        try {
+            // 这里要把所有异常都try起来，不能让消息的发送影响到正常的业务逻辑
+            template.convertAndSend("leyou.item.exchange",routingKey,spuId);
+        }catch (Exception e){
+            log.error("[消息服务] 发送消息失败，商品id：{}，异常信息：{}",spuId,e);
+        }
+    }
+
 
     private void saveSkuAndStock(Spu spu) {
         // 定义一个库存对象集合

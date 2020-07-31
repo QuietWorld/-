@@ -1,0 +1,42 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///yun6?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: root
+    password: root
+  rabbitmq:
+    host: 192.168.126.129
+    username: root
+    password: root
+    virtual-host: /leyou
+    template:
+      exchange: leyou-user-exchange
+      retry:
+        enabled: true
+        initial-interval: 5000
+        max-interval: 30000
+        multiplier: 2
+  redis:
+    host: 192.168.126.129
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5  #服务续约间隔
+    lease-expiration-duration-in-seconds: 15  #服务失效时间
+mybatis:
+  type-aliases-package:  com.item.leyou.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+leyou:
+  user:
+    routingKey: sms.verify.code
+    effectiveDuration: 300
+    exchange: leyou.sms.exchange

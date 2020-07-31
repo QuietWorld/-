@@ -32,6 +32,11 @@ public enum ExceptionEnum {
     SPUDETAIL_NOT_FOUND(404,"商品详细找不到"),
     SKU_NOT_FOUND(404,"SKU找不到"),
     GOODS_UPDATE_ERROR(500,"商品更新失败"),
+    SPU_NOT_FOUND(404,"SPU找不到"),
+    INVALID_REQUEST_PARAM(400,"无效的请求参数"),
+    VERIFICATION_CODE_HAS_EXPIRED(400,"验证码已过期"),
+    USER_SAVE_ERROR(500,"用户注册失败"),
+    CART_DELETE_ERROR(500,"购物车商品删除失败"),
     ;
 
 

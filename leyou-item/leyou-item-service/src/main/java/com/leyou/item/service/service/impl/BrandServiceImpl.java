@@ -149,4 +149,18 @@ public class BrandServiceImpl implements BrandService {
         }
         return brandList;
     }
+
+    /**
+     * 根据多个品牌id批量查询品牌
+     * @param ids 品牌id集合
+     * @return
+     */
+    @Override
+    public List<Brand> listBrandsByIds(List<Long> ids){
+        List<Brand> brandList = brandDao.selectByIdList(ids);
+        if (CollectionUtils.isEmpty(brandList)) {
+            throw new LeyouException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brandList;
+    }
 }

@@ -18,11 +18,11 @@ public class SpuVo {
      */
     private String title;
     /**
-     * 商品所属分类
+     * 商品所属分类名称
      * */
     private String cname;
     /**
-     * 商品所属品牌
+     * 商品所属品牌名称
      */
     private String bname;
 }

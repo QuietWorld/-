@@ -14,16 +14,24 @@ eureka:
 zuul:
   prefix: /api     #网关前缀
   routes:
-    item-service: /item/**  # 路由到商品的微服务
+    item-service: /item/**  # 路由到商品微服务
+    user-service: /user/** # 路由到用户微服务
+    search-service: /search/** # 路由到搜索微服务
+    auth-service: /auth/** # 路由的授权中心微服务
+    cart-service: /cart/** # 路由到购物车微服务
     upload-service:
       path: /upload/**
       serviceId: upload-service
       strip-prefix: false
-    search-service: /search/** # es的索引库路由
+  add-host-header: true  # 路由时携带请求主机的标识的头部
+  sensitive-headers:       # 指定响应时过滤的头信息，这里设置为不过滤任何响应头
+
 leyou:
   cors:
     allowed-origin:
       - Http://manage.leyou.com
+      - Http://www.leyou.com
+      - http://127.0.0.1:9002
     allowed-method:
       - OPTIONS
       - GET
@@ -32,3 +40,14 @@ leyou:
       - DELETE
       - PATCH
       - HEAD
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
+  jwt:
+    cookie-name: LY_TOKEN
+    public-key-path: D:\javaother\rsa\rsa.pub

@@ -1,0 +1,21 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: sms-service
+  rabbitmq:
+    host: 192.168.126.129
+    username: root
+    passowrd: root
+    virtual-host: /leyou
+  redis:
+    database: 0
+    host: 192.168.126.129
+    port: 6379
+leyou:
+  sms:
+    sign-name:
+    access-key-id:
+    access-key-secret:
+    verify-code-template:
+    sms_min_interval_in_ms: 60000

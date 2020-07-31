@@ -1,0 +1,22 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: auth-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10 # 拉取服务列表间隔
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5  #服务续约间隔
+    lease-expiration-duration-in-seconds: 15  #服务失效时间
+leyou:
+  jwt:
+    expireMinutes: 30
+    cookieName: LY_TOKEN
+    secret: 88@jlsA`kjsL?[]$%s! # JWT的签名加密时使用，保存在授权中心，不允许任何服务获取。
+    public-key-path: D:\javaother\rsa\rsa.pub
+    private-key-path: D:\javaother\rsa\rsa.pri

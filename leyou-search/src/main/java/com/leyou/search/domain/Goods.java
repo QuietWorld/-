@@ -65,5 +65,4 @@ public class Goods {
      * 到时候转换成json就像这样：{"specs":{"机身内存":["4GB","6GB"],"操作系统":"IOS"}}
      */
     private Map<String, Object> specs;
-
 }

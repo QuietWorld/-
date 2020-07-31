@@ -16,9 +16,5 @@ public class SpecificationClientTest {
     @Autowired
     private SpecificationClient client;
 
-    @Test
-    public void listSpecGroups() {
-        List<SpecGroup> specGroups = client.listSpecGroups(76L);
-        specGroups.forEach(System.out::println);
-    }
+
 }

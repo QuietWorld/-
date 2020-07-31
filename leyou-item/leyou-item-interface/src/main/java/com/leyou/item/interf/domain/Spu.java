@@ -38,7 +38,6 @@ public class Spu {
     private Date createTime;
     /** 最后修改时间*/
     private Date lastUpdateTime;
-
     /**
      * Sku集合，使用@Transient声明该属性不属于tb_spu表字段
      */
@@ -50,4 +49,5 @@ public class Spu {
      */
     @Transient
     private SpuDetail spuDetail;
+
 }

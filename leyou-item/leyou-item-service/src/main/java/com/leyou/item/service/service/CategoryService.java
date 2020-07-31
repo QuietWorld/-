@@ -29,4 +29,11 @@ public interface CategoryService {
      * @return
      */
     List<Category> listCategoriesByIds(List<Long> ids);
+
+    /**
+     * 根据分类id查询分类
+     * @param id 分类id
+     * @return
+     */
+    Category getCategoryById(Long id);
 }
